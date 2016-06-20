@@ -588,7 +588,7 @@ def Verification(interp_method,log_flag,runopt,*args): # Verification
     font = tkFont.Font(font=label['font'])
     txt.tag_config("b", foreground="black",
                    font=(font.actual()['family'],
-                         str(font.actual()['size']),"bold"))
+                         '-'+str(font.actual()['size']),"bold"))
     txt.tag_raise("sel")
   
     eo = 'Interpolation method is: %(interp_method)s \n' \
@@ -1358,7 +1358,7 @@ def bug():
     def cbug(event):
         import webbrowser
         with warnings.catch_warnings():
-            site = 'https://github.com/jamesedwardcourtney/VAVUQ'
+            site = 'https://github.com/VAVUQ/VAVUQ'
             webbrowser.open_new(site)
             abo.destroy()
     abo = tk.Toplevel(root)
@@ -1380,15 +1380,15 @@ def doc():
     def cdoc(event):
         import webbrowser
         with warnings.catch_warnings():
-            site = 'https://github.com/jamesedwardcourtney/VAVUQ/wiki'
+            site = 'http://vavuq.org'
             webbrowser.open_new(site)
             abo.destroy()
     abo = tk.Toplevel(root)
     abo.title('Documentation')
-    mtxt = 'Visit the following web page for the VAVUQ wiki:'
+    mtxt = 'Visit the following web page for the VAVUQ documentation:'
     msg = tk.Message(abo,text=mtxt, width=250)
     msg.config(font=('times',12))
-    link = ttk.Label(abo, text="VAVUQ Wiki",foreground="blue",
+    link = ttk.Label(abo, text="Vavuq.org",foreground="blue",
                      font=('times',12,'italic'), cursor="hand2")
     msg.pack()
     link.pack()
