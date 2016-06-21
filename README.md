@@ -1,6 +1,6 @@
 # VAVUQ
 
-This code is distributed in the hope that it will be useful for solution verification and validation.
+This code is distributed in the hope that it will be useful for solution/code verification and validation of numerical models.
 
 ========================================================================
 Reference: please see "Verification and Validation in Scintific
