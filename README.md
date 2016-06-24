@@ -1,6 +1,6 @@
 # VAVUQ
 
-This code is distributed in the hope that it will be useful for solution/code verification and validation of numerical models.
+VAVUQ (Verification And Validation and Uncertainty Quantification) can be used as a general purpose program for verification, validation, and uncertainty quantification. The motivation for the creation of and continued development of the program is to provide a cost effective and easy way to assess the quality of computational approximations. The hope is that the methods used in this program can be applied to fields such as civil engineering where they are currently often underutilized. This code was created through efforts from Bombardelli's group and Dr. Bill Fleenor at the University of California Davis. The creators belong to the Civil & Environmental Engineering (CEE) Department, the Center for Watershed Sciences (CWS), and the Delta Solution Team (DST). The main code development is headed by Kaveh Zamani and James E. Courtney.
 
 ========================================================================
 Reference: please see "Verification and Validation in Scintific
