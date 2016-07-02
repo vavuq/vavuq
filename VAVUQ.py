@@ -1,19 +1,18 @@
 #!/usr/bin/env python
 
 """
-VAVUQ can be used as a general purpose program for verification, validation,
-and uncertainty quantification. The motivation for the creation of and
-continued development of the program is to provide a cost effective and easy
-way to assess the quality of computational approximations. The hope is that
-the methods used in this program can be applied to fields such as civil
-engineering where they are currently often underutilized. This code was
-created at the University of California Davis.
-
-The primary contributors to the program are as follows:
-    * Fabian Bombardelli
-    * Kaveh Zamani
-    * William Fleenor
-    * James E. Courtney
+VAVUQ (Verification And Validation and Uncertainty Quantification) can
+be used as a general purpose program for verification, validation, and
+uncertainty quantification. The motivation for the creation of and 
+continued development of the program is to provide a cost effective and
+easy way to assess the quality of computational approximations. The hope
+is that the methods used in this program can be applied to fields such 
+as civil engineering where they are currently often underutilized. This
+code was created through efforts from Bombardelli's group and Dr. Bill 
+Fleenor at the University of California Davis. The creators belong to 
+the Civil & Environmental Engineering (CEE) Department, the Center for
+Watershed Sciences (CWS), and the Delta Solution Team (DST). The main 
+code development is headed by Kaveh Zamani and James E. Courtney.
 
 ==============================================================================
 Reference: please see "Verification and Validation in Scintific
@@ -35,11 +34,7 @@ solvers." Environmental Fluid Mechanics.
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-# This code uses: Scipy, Pandas, Numpy, Math, Matplotlib
-import Tkinter as tk
-import ttk
-import tkFont
-import warnings
+# This code uses: Scipy, Pandas, Numpy, Math, Matplotlib, Tkinter
 
 # plot options [1:on, 0:off]
 popt = [None]*8
@@ -268,6 +263,7 @@ def sqsurfplot(x,y,z,titl):
     from matplotlib.ticker import LinearLocator, FormatStrFormatter
     from mpl_toolkits.mplot3d import Axes3D
     import matplotlib.pyplot as plt
+    import warnings
     fig = plt.figure(facecolor="white")
     warnings.simplefilter("ignore")
     ax = fig.gca(projection='3d')
@@ -291,6 +287,7 @@ def sqsurfplot(x,y,z,titl):
 def surfplot(x,y,z,titl):
     import matplotlib.pyplot as plt
     import numpy as np
+    import warnings
     x,y,z = (np.squeeze(np.asarray(np.reshape(w,(w.size,1))))
              for w in [x,y,z])
     fig = plt.figure()
@@ -308,6 +305,7 @@ def scatplot(x,y,z,titl):
     import matplotlib.pyplot as plt
     import matplotlib as mpl
     import numpy as np
+    import warnings
     from matplotlib import cm
     from mpl_toolkits.mplot3d import Axes3D
     x,y,z = (np.squeeze(np.asarray(np.reshape(w,(w.size,1)))) 
@@ -349,6 +347,7 @@ def trisurfplot(x,y,z,titl):
 def triconplot(x,y,z,titl):    
     import matplotlib.pyplot as plt
     import numpy as np
+    import warnings
     from matplotlib import cm
     from matplotlib.tri import Triangulation
     from matplotlib.tri import UniformTriRefiner
@@ -386,6 +385,7 @@ def cont2d(x,y,z,titl):
     import numpy as np
     import matplotlib.pyplot as plt
     import matplotlib as mpl
+    import warnings
     from scipy.interpolate import griddata
     XI, YI = np.linspace(x.min(),x.max(),100),np.linspace(y.min(),y.max(),100)
     XI, YI = np.meshgrid(XI, YI)  
@@ -455,7 +455,7 @@ def Validation(pd2, pd1): # Validation Calculations
     font = tkFont.Font(font=label['font'])
     txt.tag_config("b", foreground="black",
                    font=(font.actual()['family'],
-                         str(font.actual()['size']),"bold"))
+                         '-'+str(font.actual()['size']),"bold"))
     txt.tag_raise("sel")
     txt.insert(str(i)+'.0',eo+'\n', ("n", "a"))
     txt.mark_set(tk.INSERT,str(i)+'.0')
@@ -979,6 +979,10 @@ def Verification(interp_method,log_flag,runopt,*args): # Verification
 #######################
 # Graphical Interface #
 #######################
+import Tkinter as tk
+import ttk
+import tkFont
+
 def rmrw(self,r):
     for label in self.grid_slaves():
         if int(label.grid_info()['row']) > r:
@@ -1222,18 +1226,18 @@ def about():# VAVUQ short description
                     background='white')
     msg.pack()
     mtxt = """
-    VAVUQ can be used as a general purpose program for verification,
-    validation, and uncertainty quantification. The motivation for the creation
-    of and continued development of the program is to provide a cost effective 
-    and easy way to assess the quality of computational approximations. The
-    hope is that the methods used in this program can be applied to fields such
-    as civil engineering where they are currently often underutilized. This 
-    code was created at the University of California Davis. The primary
-    contributors to the program are as follows: \n
-     * Fabian Bombardelli
-     * Kaveh Zamani
-     * Bill Flennor
-     * James Courtney
+    VAVUQ (Verification And Validation and Uncertainty Quantification) can
+    be used as a general purpose program for verification, validation, and
+    uncertainty quantification. The motivation for the creation of and 
+    continued development of the program is to provide a cost effective and
+    easy way to assess the quality of computational approximations. The hope
+    is that the methods used in this program can be applied to fields such 
+    as civil engineering where they are currently often underutilized. This
+    code was created through efforts from Bombardelli's group and Dr. Bill 
+    Fleenor at the University of California Davis. The creators belong to 
+    the Civil & Environmental Engineering (CEE) Department, the Center for
+    Watershed Sciences (CWS), and the Delta Solution Team (DST). The main 
+    code development is headed by Kaveh Zamani and James E. Courtney.
     """
     msg = ttk.Label(abo,text=mtxt,background='white')
     #msg.config(bg='white',font=('times',12,'italic'))
@@ -1357,6 +1361,7 @@ def butttons(self,rw,o):
 def bug():
     def cbug(event):
         import webbrowser
+        import warnings
         with warnings.catch_warnings():
             site = 'https://github.com/VAVUQ/VAVUQ'
             webbrowser.open_new(site)
@@ -1364,7 +1369,7 @@ def bug():
     abo = tk.Toplevel(root)
     abo.title('Contribute/Report Bug...')
     mtxt = 'Please report any bugs or contribute to VAVUQ by visiting the' \
-           'following repository:'
+           ' following repository:'
     msg = tk.Message(abo,text=mtxt, width=250)
     msg.config(font=('times',12))
     link = ttk.Label(abo, text="VAVUQ Repository",foreground="blue",
@@ -1379,6 +1384,7 @@ def bug():
 def doc():
     def cdoc(event):
         import webbrowser
+        import warnings
         with warnings.catch_warnings():
             site = 'http://vavuq.org'
             webbrowser.open_new(site)
@@ -1539,4 +1545,3 @@ root.bind("<Return>", kpr)
 root.focus_set()
 
 root.mainloop()
-
