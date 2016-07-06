@@ -211,8 +211,8 @@ def inter_fun(x,y,z,XI,YI,interp_method):
     if interp_method == 'Spline':
         from scipy.interpolate import RectBivariateSpline
         x, y = np.sort(np.unique(x)), np.sort(np.unique(y))
-        spl = RectBivariateSpline(x,y,z)
-        imat = spl.ev(XI, YI)
+        spl = RectBivariateSpline(y,x,z.H)
+        imat = spl.ev(YI, XI)
     elif interp_method == 'Cubic':
         from scipy.interpolate import griddata
         z = z.ravel().tolist()[0]
